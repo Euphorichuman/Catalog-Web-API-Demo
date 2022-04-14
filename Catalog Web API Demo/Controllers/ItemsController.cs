@@ -1,4 +1,5 @@
-﻿using Catalog_Web_API_Demo.Entities;
+﻿using Catalog_Web_API_Demo.DTOs;
+using Catalog_Web_API_Demo.Entities;
 using Catalog_Web_API_Demo.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,24 +9,24 @@ namespace Catalog_Web_API_Demo.Controllers;
     [Route("items")]
     public class ItemsController : ControllerBase
     {
-        private readonly InMemItemsRepository repository;
+        private readonly IItemsRepository repository;
 
-        public ItemsController()
+        public ItemsController(IItemsRepository repository)
         {
-            repository = new InMemItemsRepository();
+            this.repository = repository;
         }
         
         // GET /items
         [HttpGet]
-        public IEnumerable<Item> GetItems()
+        public IEnumerable<ItemDTO> GetItems()
         {
-            var items = repository.GetItems();
+            var items = repository.GetItems().Select(item => item.AsDTO());
             return items;
         }
         
         // Get /items/{id}
         [HttpGet("{id}")]
-        public ActionResult<Item> GetItem(Guid id)
+        public ActionResult<ItemDTO> GetItem(Guid id)
         {
             var item = repository.GetItem(id);
             
@@ -34,6 +35,6 @@ namespace Catalog_Web_API_Demo.Controllers;
                 return NotFound();
             }
             
-            return item;
+            return item.AsDTO();
         }    
     }
