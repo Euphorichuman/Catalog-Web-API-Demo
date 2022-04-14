@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>10</LangVersion>
     <RootNamespace>Catalog_Web_API_Demo</RootNamespace>
   </PropertyGroup>
 
