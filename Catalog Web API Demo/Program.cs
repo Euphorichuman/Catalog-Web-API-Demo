@@ -22,7 +22,11 @@ builder.Services.AddSingleton<IMongoClient>(serviceProvider =>
 // Singleton for having one copy of the instance of a type across the entire life of the service
 builder.Services.AddSingleton<IItemsRepository, MongoDBItemsRepository>();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+{
+    options.SuppressAsyncSuffixInActionNames = false;
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
