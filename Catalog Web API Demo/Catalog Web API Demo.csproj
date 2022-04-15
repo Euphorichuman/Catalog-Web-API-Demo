@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>10</LangVersion>
     <RootNamespace>Catalog_Web_API_Demo</RootNamespace>
+    <UserSecretsId>10324502-e26c-41d5-b1ca-a5cd6d72f6b3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
